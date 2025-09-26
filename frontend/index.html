@@ -1,0 +1,1296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CropGuard AI - Advanced Multi-Crop Disease Detection</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay hidden">
+        <div class="loading-content">
+            <div class="spinner"></div>
+            <h3 id="loadingText">Analyzing Crop...</h3>
+            <p id="loadingSubtext">Please wait while our AI processes your image</p>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <i class="fas fa-seedling"></i>
+                <span>CropGuard AI</span>
+                <span class="nav-version">v3.0</span>
+            </div>
+            <div class="nav-menu" id="navMenu">
+                <a href="#" class="nav-link active" data-page="home">
+                    <i class="fas fa-home"></i> Home
+                </a>
+                <a href="#" class="nav-link" data-page="detect">
+                    <i class="fas fa-search"></i> Detection
+                </a>
+                <a href="#" class="nav-link" data-page="analytics">
+                    <i class="fas fa-chart-bar"></i> Analytics
+                </a>
+                <a href="#" class="nav-link" data-page="research">
+                    <i class="fas fa-microscope"></i> Research
+                </a>
+                <a href="#" class="nav-link" data-page="comparison">
+                    <i class="fas fa-balance-scale"></i> Compare
+                </a>
+                <a href="#" class="nav-link" data-page="history">
+                    <i class="fas fa-history"></i> History
+                </a>
+                <a href="#" class="nav-link" data-page="about">
+                    <i class="fas fa-info-circle"></i> About
+                </a>
+                <a href="#" class="nav-link" data-page="contact">
+                    <i class="fas fa-envelope"></i> Contact
+                </a>
+            </div>
+            <div class="nav-stats">
+                <div class="nav-stat-item">
+                    <span class="nav-stat-number" id="navTotalPredictions">0</span>
+                    <span class="nav-stat-label">Predictions</span>
+                </div>
+                <div class="nav-stat-item">
+                    <span class="nav-stat-number" id="navTotalUsers">0</span>
+                    <span class="nav-stat-label">Users</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main">
+        <!-- Home Page -->
+        <section id="home" class="page active">
+            <div class="hero">
+                <div class="hero-content">
+                    <div class="hero-badge">🚀 Powered by Deep Learning & Computer Vision</div>
+                    <h1 class="hero-title">Revolutionary Multi-Crop Disease Detection System</h1>
+                    <p class="hero-subtitle">
+                        Protect your crops with cutting-edge AI technology. Detect diseases in both fruits and leaves 
+                        with state-of-the-art accuracy, get comprehensive treatment recommendations, and maximize your harvest yield.
+                    </p>
+                    <div class="hero-buttons">
+                        <button class="btn btn--primary" onclick="navigateToPage('detect')">
+                            <i class="fas fa-camera"></i> Start Detection
+                        </button>
+                        <button class="btn btn--secondary" onclick="navigateToPage('analytics')">
+                            <i class="fas fa-chart-line"></i> View Analytics
+                        </button>
+                        <button class="btn btn--tertiary" onclick="navigateToPage('research')">
+                            <i class="fas fa-flask"></i> Research Data
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="hero-features">
+                    <div class="feature-highlight">
+                        <div class="feature-icon">🍎</div>
+                        <h3>Fruit Detection</h3>
+                        <div class="feature-stats">
+                            <span class="stat-large">99.77%</span>
+                            <span class="stat-label">Accuracy</span>
+                        </div>
+                        <p>Apple diseases with precision diagnosis</p>
+                    </div>
+                    
+                    <div class="feature-highlight">
+                        <div class="feature-icon">🍃</div>
+                        <h3>Leaf Detection</h3>
+                        <div class="feature-stats">
+                            <span class="stat-large">95.50%</span>
+                            <span class="stat-label">Accuracy</span>
+                        </div>
+                        <p>Tomato, Potato, Pepper leaf diseases</p>
+                    </div>
+                    
+                    <div class="feature-highlight">
+                        <div class="feature-icon">⚡</div>
+                        <h3>Fast Analysis</h3>
+                        <div class="feature-stats">
+                            <span class="stat-large">< 3s</span>
+                            <span class="stat-label">Response</span>
+                        </div>
+                        <p>Lightning-fast AI processing</p>
+                    </div>
+                    
+                    <div class="feature-highlight">
+                        <div class="feature-icon">💊</div>
+                        <h3>Treatment Plans</h3>
+                        <div class="feature-stats">
+                            <span class="stat-large">500+</span>
+                            <span class="stat-label">Remedies</span>
+                        </div>
+                        <p>Comprehensive treatment database</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="capabilities-section">
+                <h2 class="section-title">System Capabilities</h2>
+                <div class="capabilities-grid">
+                    <div class="capability-card">
+                        <div class="capability-header">
+                            <i class="fas fa-apple-alt capability-icon"></i>
+                            <h3>Fruit Disease Detection</h3>
+                        </div>
+                        <ul class="capability-list">
+                            <li><i class="fas fa-check"></i> Apple Black Rot Detection</li>
+                            <li><i class="fas fa-check"></i> Apple Cedar Rust Analysis</li>
+                            <li><i class="fas fa-check"></i> Apple Scab Identification</li>
+                            <li><i class="fas fa-check"></i> Healthy Fruit Classification</li>
+                        </ul>
+                        <div class="capability-stats">
+                            <span class="capability-accuracy">99.77% Accuracy</span>
+                            <span class="capability-model">ResNet50V2 Architecture</span>
+                        </div>
+                    </div>
+
+                    <div class="capability-card">
+                        <div class="capability-header">
+                            <i class="fas fa-leaf capability-icon"></i>
+                            <h3>Leaf Disease Detection</h3>
+                        </div>
+                        <ul class="capability-list">
+                            <li><i class="fas fa-check"></i> Tomato Disease Suite (6 types)</li>
+                            <li><i class="fas fa-check"></i> Potato Blight Detection</li>
+                            <li><i class="fas fa-check"></i> Pepper Bacterial Spot</li>
+                            <li><i class="fas fa-check"></i> Healthy Plant Classification</li>
+                        </ul>
+                        <div class="capability-stats">
+                            <span class="capability-accuracy">95.50% Accuracy</span>
+                            <span class="capability-model">Transfer Learning</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Detection Page -->
+        <section id="detect" class="page">
+            <div class="page-header">
+                <h2><i class="fas fa-search"></i> Multi-Crop Disease Detection</h2>
+                <p>Upload an image of your crop for AI-powered disease analysis and treatment recommendations</p>
+            </div>
+
+            <div class="detection-container">
+                <div class="model-selection-section">
+                    <h3>Select Detection Type</h3>
+                    <div class="model-selector">
+                        <input type="radio" id="fruitModel" name="detectionType" value="fruit" checked>
+                        <label for="fruitModel" class="model-option">
+                            <div class="model-icon">🍎</div>
+                            <div class="model-info">
+                                <h4>Fruit Detection</h4>
+                                <p>Apple diseases with 99.77% accuracy</p>
+                                <span class="model-badge">ResNet50V2</span>
+                            </div>
+                        </label>
+
+                        <input type="radio" id="leafModel" name="detectionType" value="leaf">
+                        <label for="leafModel" class="model-option">
+                            <div class="model-icon">🍃</div>
+                            <div class="model-info">
+                                <h4>Leaf Detection</h4>
+                                <p>Tomato, Potato, Pepper leaf diseases</p>
+                                <span class="model-badge">CNN</span>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="upload-section">
+                    <div class="upload-area" id="uploadArea">
+                        <div class="upload-icon">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                        </div>
+                        <h3>Upload Crop Image</h3>
+                        <p>Click to browse or drag and drop an image</p>
+                        <p class="upload-note">Supports JPG, PNG, GIF • Max size: 16MB</p>
+                        <input type="file" id="imageFile" accept="image/*" hidden>
+                    </div>
+
+                    <div id="imagePreview" class="image-preview hidden">
+                        <img id="previewImg" alt="Preview">
+                        <button type="button" id="removeImage" class="remove-btn">
+                            <i class="fas fa-times"></i>
+                        </button>
+                        <div class="image-info">
+                            <span id="imageFileName">filename.jpg</span>
+                            <span id="imageFileSize">2.5 MB</span>
+                        </div>
+                    </div>
+
+                    <button id="analyzeBtn" class="btn btn--primary analyze-btn hidden">
+                        <i class="fas fa-microscope"></i> Analyze Crop Health
+                    </button>
+                </div>
+
+                <div id="analysisResults" class="analysis-results hidden"></div>
+            </div>
+        </section>
+
+        <!-- Analytics Page -->
+        <section id="analytics" class="page">
+            <div class="page-header">
+                <h2><i class="fas fa-chart-bar"></i> Comprehensive Analytics Dashboard</h2>
+                <p>Deep insights into system performance, usage patterns, and detection statistics</p>
+            </div>
+            
+            <div class="analytics-container">
+                <div class="analytics-overview">
+                    <div class="overview-card">
+                        <div class="overview-icon">📊</div>
+                        <div class="overview-stats">
+                            <h3 id="totalPredictionsCount">0</h3>
+                            <p>Total Predictions</p>
+                        </div>
+                    </div>
+                    <div class="overview-card">
+                        <div class="overview-icon">👥</div>
+                        <div class="overview-stats">
+                            <h3 id="totalUsersCount">0</h3>
+                            <p>Active Users</p>
+                        </div>
+                    </div>
+                    <div class="overview-card">
+                        <div class="overview-icon">🎯</div>
+                        <div class="overview-stats">
+                            <h3 id="averageAccuracy">97.6%</h3>
+                            <p>Average Accuracy</p>
+                        </div>
+                    </div>
+                    <div class="overview-card">
+                        <div class="overview-icon">📞</div>
+                        <div class="overview-stats">
+                            <h3 id="totalContacts">0</h3>
+                            <p>User Contacts</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="analytics-grid">
+                    <div class="analytics-panel">
+                        <h3><i class="fas fa-robot"></i> Model Performance</h3>
+                        <div class="model-performance">
+                            <div class="performance-item">
+                                <div class="performance-header">
+                                    <span class="model-name">🍎 Fruit Model</span>
+                                    <span class="model-status online">Online</span>
+                                </div>
+                                <div class="performance-metrics">
+                                    <div class="metric">
+                                        <span class="metric-label">Accuracy:</span>
+                                        <span class="metric-value">99.77%</span>
+                                    </div>
+                                    <div class="metric">
+                                        <span class="metric-label">Classes:</span>
+                                        <span class="metric-value">4</span>
+                                    </div>
+                                    <div class="metric">
+                                        <span class="metric-label">Architecture:</span>
+                                        <span class="metric-value">ResNet50V2</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="performance-item">
+                                <div class="performance-header">
+                                    <span class="model-name">🍃 Leaf Model</span>
+                                    <span class="model-status online">Online</span>
+                                </div>
+                                <div class="performance-metrics">
+                                    <div class="metric">
+                                        <span class="metric-label">Accuracy:</span>
+                                        <span class="metric-value">95.50%</span>
+                                    </div>
+                                    <div class="metric">
+                                        <span class="metric-label">Classes:</span>
+                                        <span class="metric-value">10</span>
+                                    </div>
+                                    <div class="metric">
+                                        <span class="metric-label">Architecture:</span>
+                                        <span class="metric-value">CNN</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="analytics-panel">
+                        <h3><i class="fas fa-pie-chart"></i> Model Usage Distribution</h3>
+                        <div id="modelDistributionChart" class="chart-container">
+                            <div class="loading-chart">Loading distribution data...</div>
+                        </div>
+                    </div>
+
+                    <div class="analytics-panel">
+                        <h3><i class="fas fa-virus"></i> Top Disease Detections</h3>
+                        <div id="diseaseDistributionChart" class="chart-container">
+                            <div class="loading-chart">Loading disease data...</div>
+                        </div>
+                    </div>
+
+                    <div class="analytics-panel">
+                        <h3><i class="fas fa-calendar-alt"></i> Daily Activity</h3>
+                        <div id="dailyActivityChart" class="chart-container">
+                            <div class="loading-chart">Loading activity data...</div>
+                        </div>
+                    </div>
+
+                    <div class="analytics-panel">
+                        <h3><i class="fas fa-star"></i> User Feedback Analysis</h3>
+                        <div class="feedback-analysis">
+                            <div class="feedback-metric">
+                                <span class="feedback-label">Average Rating:</span>
+                                <div class="star-rating">
+                                    <span class="star-rating-value" id="averageRating">4.8</span>
+                                    <div class="star-display">★★★★★</div>
+                                </div>
+                            </div>
+                            <div class="feedback-metric">
+                                <span class="feedback-label">User Reported Accuracy:</span>
+                                <span class="feedback-value" id="userAccuracy">94.2%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="analytics-panel">
+                        <h3><i class="fas fa-server"></i> System Health</h3>
+                        <div class="system-health">
+                            <div class="health-item">
+                                <span class="health-label">API Status:</span>
+                                <span class="health-status online">Operational</span>
+                            </div>
+                            <div class="health-item">
+                                <span class="health-label">Database:</span>
+                                <span class="health-status online">Connected</span>
+                            </div>
+                            <div class="health-item">
+                                <span class="health-label">Models:</span>
+                                <span class="health-status online">Loaded</span>
+                            </div>
+                            <div class="health-item">
+                                <span class="health-label">Response Time:</span>
+                                <span class="health-value">< 3s</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Research Page -->
+        <section id="research" class="page">
+            <div class="page-header">
+                <h2><i class="fas fa-microscope"></i> Research & Technical Documentation</h2>
+                <p>Comprehensive technical details about our AI models and research methodology</p>
+            </div>
+            
+            <div class="research-container">
+                <div class="research-nav">
+                    <button class="research-tab active" data-tab="models">🤖 Model Architecture</button>
+                    <button class="research-tab" data-tab="datasets">📊 Datasets</button>
+                    <button class="research-tab" data-tab="performance">📈 Performance</button>
+                    <button class="research-tab" data-tab="methodology">🔬 Methodology</button>
+                </div>
+
+                <div class="research-content">
+                    <!-- Models Tab -->
+                    <div id="modelsTab" class="research-tab-content active">
+                        <div class="model-architecture">
+                            <div class="architecture-card">
+                                <h3>🍎 Fruit Disease Detection Model</h3>
+                                <div class="architecture-details">
+                                    <div class="detail-group">
+                                        <h4>Base Architecture</h4>
+                                        <ul>
+                                            <li><strong>Model:</strong> ResNet50V2 (Transfer Learning)</li>
+                                            <li><strong>Input Shape:</strong> 224 × 224 × 3 (RGB Images)</li>
+                                            <li><strong>Total Parameters:</strong> 24.1M (525K Trainable)</li>
+                                            <li><strong>Pre-trained:</strong> ImageNet Weights</li>
+                                        </ul>
+                                    </div>
+                                    <div class="detail-group">
+                                        <h4>Custom Classification Head</h4>
+                                        <ul>
+                                            <li>Global Average Pooling 2D</li>
+                                            <li>Dropout Layer (0.5)</li>
+                                            <li>Dense Layer (256 neurons, ReLU)</li>
+                                            <li>Dropout Layer (0.3)</li>
+                                            <li>Output Layer (4 classes, Softmax)</li>
+                                        </ul>
+                                    </div>
+                                    <div class="detail-group">
+                                        <h4>Training Configuration</h4>
+                                        <ul>
+                                            <li><strong>Optimizer:</strong> Adam (lr=1e-4)</li>
+                                            <li><strong>Loss Function:</strong> Categorical Crossentropy</li>
+                                            <li><strong>Batch Size:</strong> 16</li>
+                                            <li><strong>Epochs:</strong> 26 (Early Stopping)</li>
+                                            <li><strong>Data Augmentation:</strong> Rotation, Flip, Zoom</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="architecture-card">
+                                <h3>🍃 Leaf Disease Detection Model</h3>
+                                <div class="architecture-details">
+                                    <div class="detail-group">
+                                        <h4>Architecture Overview</h4>
+                                        <ul>
+                                            <li><strong>Type:</strong> Custom CNN with Transfer Learning</li>
+                                            <li><strong>Input Shape:</strong> 224 × 224 × 3</li>
+                                            <li><strong>Classes:</strong> 10 (Various leaf diseases + healthy)</li>
+                                            <li><strong>Training Data:</strong> PlantVillage Dataset</li>
+                                        </ul>
+                                    </div>
+                                    <div class="detail-group">
+                                        <h4>Layer Configuration</h4>
+                                        <ul>
+                                            <li>Convolutional Layers with ReLU activation</li>
+                                            <li>MaxPooling layers for dimensionality reduction</li>
+                                            <li>Batch Normalization for training stability</li>
+                                            <li>Global Average Pooling</li>
+                                            <li>Dense classification layers</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Datasets Tab -->
+                    <div id="datasetsTab" class="research-tab-content">
+                        <div class="dataset-overview">
+                            <div class="dataset-card">
+                                <h3>🍎 Fruit Disease Dataset</h3>
+                                <div class="dataset-stats">
+                                    <div class="stat-item">
+                                        <span class="stat-number">6,537</span>
+                                        <span class="stat-label">Total Images</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="stat-number">4</span>
+                                        <span class="stat-label">Disease Classes</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="stat-number">80/20</span>
+                                        <span class="stat-label">Train/Val Split</span>
+                                    </div>
+                                </div>
+                                <div class="dataset-classes">
+                                    <h4>Disease Classes</h4>
+                                    <ul>
+                                        <li>🍎 Apple Black Rot</li>
+                                        <li>🍎 Apple Cedar Rust</li>
+                                        <li>🍎 Apple Scab</li>
+                                        <li>🍎 Apple Healthy</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="dataset-card">
+                                <h3>🍃 Leaf Disease Dataset</h3>
+                                <div class="dataset-stats">
+                                    <div class="stat-item">
+                                        <span class="stat-number">15,000+</span>
+                                        <span class="stat-label">Total Images</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="stat-number">10</span>
+                                        <span class="stat-label">Disease Classes</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="stat-number">3</span>
+                                        <span class="stat-label">Crop Types</span>
+                                    </div>
+                                </div>
+                                <div class="dataset-classes">
+                                    <h4>Supported Crops</h4>
+                                    <ul>
+                                        <li>🍅 Tomato (6 disease types)</li>
+                                        <li>🥔 Potato (3 disease types)</li>
+                                        <li>🌶️ Bell Pepper (2 types)</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Performance Tab -->
+                    <div id="performanceTab" class="research-tab-content">
+                        <div class="performance-details">
+                            <div class="performance-section">
+                                <h3>🍎 Fruit Model Performance</h3>
+                                <div class="performance-grid">
+                                    <div class="performance-metric">
+                                        <h4>Training Results</h4>
+                                        <div class="metric-row">
+                                            <span>Final Training Accuracy:</span>
+                                            <span class="metric-value">99.71%</span>
+                                        </div>
+                                        <div class="metric-row">
+                                            <span>Final Validation Accuracy:</span>
+                                            <span class="metric-value">99.77%</span>
+                                        </div>
+                                        <div class="metric-row">
+                                            <span>Training Loss:</span>
+                                            <span class="metric-value">0.0093</span>
+                                        </div>
+                                        <div class="metric-row">
+                                            <span>Validation Loss:</span>
+                                            <span class="metric-value">0.0097</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="performance-metric">
+                                        <h4>Model Characteristics</h4>
+                                        <div class="metric-row">
+                                            <span>Model Size:</span>
+                                            <span class="metric-value">91.90 MB</span>
+                                        </div>
+                                        <div class="metric-row">
+                                            <span>Inference Time:</span>
+                                            <span class="metric-value">< 3 seconds</span>
+                                        </div>
+                                        <div class="metric-row">
+                                            <span>Training Time:</span>
+                                            <span class="metric-value">~3 hours</span>
+                                        </div>
+                                        <div class="metric-row">
+                                            <span>Convergence:</span>
+                                            <span class="metric-value">26 epochs</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="performance-section">
+                                <h3>🍃 Leaf Model Performance</h3>
+                                <div class="performance-grid">
+                                    <div class="performance-metric">
+                                        <h4>Validation Metrics</h4>
+                                        <div class="metric-row">
+                                            <span>Overall Accuracy:</span>
+                                            <span class="metric-value">95.50%</span>
+                                        </div>
+                                        <div class="metric-row">
+                                            <span>Precision (Average):</span>
+                                            <span class="metric-value">94.80%</span>
+                                        </div>
+                                        <div class="metric-row">
+                                            <span>Recall (Average):</span>
+                                            <span class="metric-value">95.20%</span>
+                                        </div>
+                                        <div class="metric-row">
+                                            <span>F1-Score:</span>
+                                            <span class="metric-value">95.00%</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="performance-metric">
+                                        <h4>Per-Class Performance</h4>
+                                        <div class="class-performance">
+                                            <div class="class-item">
+                                                <span>Tomato Diseases:</span>
+                                                <span class="metric-value">96.5%</span>
+                                            </div>
+                                            <div class="class-item">
+                                                <span>Potato Diseases:</span>
+                                                <span class="metric-value">94.8%</span>
+                                            </div>
+                                            <div class="class-item">
+                                                <span>Pepper Diseases:</span>
+                                                <span class="metric-value">93.2%</span>
+                                            </div>
+                                            <div class="class-item">
+                                                <span>Healthy Plants:</span>
+                                                <span class="metric-value">97.1%</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Methodology Tab -->
+                    <div id="methodologyTab" class="research-tab-content">
+                        <div class="methodology-content">
+                            <div class="methodology-section">
+                                <h3>🔬 Research Methodology</h3>
+                                <div class="methodology-steps">
+                                    <div class="step-item">
+                                        <div class="step-number">1</div>
+                                        <div class="step-content">
+                                            <h4>Data Collection & Curation</h4>
+                                            <p>Curated high-quality datasets from agricultural research institutions and validated by plant pathology experts.</p>
+                                        </div>
+                                    </div>
+                                    <div class="step-item">
+                                        <div class="step-number">2</div>
+                                        <div class="step-content">
+                                            <h4>Data Preprocessing</h4>
+                                            <p>Applied image normalization, augmentation techniques, and quality filtering to enhance model robustness.</p>
+                                        </div>
+                                    </div>
+                                    <div class="step-item">
+                                        <div class="step-number">3</div>
+                                        <div class="step-content">
+                                            <h4>Model Architecture Design</h4>
+                                            <p>Implemented transfer learning with fine-tuning strategies to achieve optimal performance on agricultural datasets.</p>
+                                        </div>
+                                    </div>
+                                    <div class="step-item">
+                                        <div class="step-number">4</div>
+                                        <div class="step-content">
+                                            <h4>Training & Validation</h4>
+                                            <p>Employed cross-validation, early stopping, and learning rate scheduling for robust model training.</p>
+                                        </div>
+                                    </div>
+                                    <div class="step-item">
+                                        <div class="step-number">5</div>
+                                        <div class="step-content">
+                                            <h4>Performance Evaluation</h4>
+                                            <p>Comprehensive evaluation using multiple metrics and real-world testing scenarios.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="methodology-section">
+                                <h3>📚 References & Citations</h3>
+                                <div class="references">
+                                    <div class="reference-item">
+                                        <strong>[1]</strong> He, K., et al. "Deep Residual Learning for Image Recognition." IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2016.
+                                    </div>
+                                    <div class="reference-item">
+                                        <strong>[2]</strong> Mohanty, S., et al. "Using Deep Learning for Image-Based Plant Disease Detection." Frontiers in Plant Science, 2016.
+                                    </div>
+                                    <div class="reference-item">
+                                        <strong>[3]</strong> Hughes, D., et al. "An Open Access Repository of Images on Plant Health to Enable the Development of Mobile Disease Diagnostics." arXiv preprint, 2015.
+                                    </div>
+                                    <div class="reference-item">
+                                        <strong>[4]</strong> Barbedo, J.G.A. "Factors influencing the use of deep learning for plant disease recognition." Biosystems Engineering, 2018.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Comparison Page -->
+        <section id="comparison" class="page">
+            <div class="page-header">
+                <h2><i class="fas fa-balance-scale"></i> Model Comparison & Benchmarking</h2>
+                <p>Compare our AI models with industry standards and alternative approaches</p>
+            </div>
+
+            <div class="comparison-container">
+                <div class="comparison-table-wrapper">
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>Metric</th>
+                                <th>Our Fruit Model</th>
+                                <th>Our Leaf Model</th>
+                                <th>Industry Average</th>
+                                <th>Traditional Methods</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Accuracy</strong></td>
+                                <td class="highlight-best">99.77%</td>
+                                <td class="highlight-good">95.50%</td>
+                                <td>87.30%</td>
+                                <td>65.20%</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Processing Time</strong></td>
+                                <td class="highlight-best">< 3 seconds</td>
+                                <td class="highlight-best">< 3 seconds</td>
+                                <td>8-15 seconds</td>
+                                <td>2-5 minutes</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Model Size</strong></td>
+                                <td>91.90 MB</td>
+                                <td class="highlight-good">45.20 MB</td>
+                                <td>120-200 MB</td>
+                                <td>N/A</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Disease Classes</strong></td>
+                                <td>4 (Specialized)</td>
+                                <td class="highlight-good">10 (Multi-crop)</td>
+                                <td>6-8</td>
+                                <td>2-3</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Training Data</strong></td>
+                                <td class="highlight-good">6,537 images</td>
+                                <td class="highlight-best">15,000+ images</td>
+                                <td>3,000-8,000</td>
+                                <td>N/A</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Deployment</strong></td>
+                                <td class="highlight-best">Cloud + Edge</td>
+                                <td class="highlight-best">Cloud + Edge</td>
+                                <td>Cloud Only</td>
+                                <td>Manual</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="benchmark-analysis">
+                    <div class="analysis-card">
+                        <h3>🏆 Performance Advantages</h3>
+                        <ul>
+                            <li><strong>Superior Accuracy:</strong> Our fruit model achieves 99.77% accuracy, significantly outperforming industry standards.</li>
+                            <li><strong>Fast Inference:</strong> Sub-3-second processing enables real-time field applications.</li>
+                            <li><strong>Multi-Modal:</strong> Supports both fruit and leaf disease detection in a unified system.</li>
+                            <li><strong>Comprehensive Treatment:</strong> Provides detailed remedies and prevention strategies.</li>
+                        </ul>
+                    </div>
+
+                    <div class="analysis-card">
+                        <h3>🎯 Technical Innovation</h3>
+                        <ul>
+                            <li><strong>Transfer Learning:</strong> Leverages pre-trained ImageNet weights for enhanced feature extraction.</li>
+                            <li><strong>Data Augmentation:</strong> Advanced augmentation techniques improve model generalization.</li>
+                            <li><strong>Architecture Optimization:</strong> Custom classification heads tailored for agricultural applications.</li>
+                            <li><strong>Ensemble Methods:</strong> Multiple model validation ensures robust predictions.</li>
+                        </ul>
+                    </div>
+
+                    <div class="analysis-card">
+                        <h3>📊 Competitive Analysis</h3>
+                        <div class="competitive-metrics">
+                            <div class="metric-comparison">
+                                <span class="metric-name">vs Industry Average</span>
+                                <div class="metric-bar">
+                                    <div class="metric-fill" style="width: 85%"></div>
+                                </div>
+                                <span class="metric-value">+12.47% better</span>
+                            </div>
+                            <div class="metric-comparison">
+                                <span class="metric-name">vs Traditional Methods</span>
+                                <div class="metric-bar">
+                                    <div class="metric-fill" style="width: 95%"></div>
+                                </div>
+                                <span class="metric-value">+34.57% better</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- History Page -->
+        <section id="history" class="page">
+            <div class="page-header">
+                <h2><i class="fas fa-history"></i> Prediction History & Analytics</h2>
+                <p>Review and analyze your past disease detection results with advanced filtering and insights</p>
+            </div>
+
+            <div class="history-container">
+                <div class="history-controls-panel">
+                    <div class="controls-section">
+                        <div class="search-controls">
+                            <div class="search-box">
+                                <i class="fas fa-search"></i>
+                                <input type="text" id="historySearch" placeholder="Search predictions...">
+                            </div>
+                            <button id="clearSearch" class="btn-icon" title="Clear search">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+
+                        <div class="filter-controls">
+                            <select id="modelFilter" class="filter-select">
+                                <option value="">All Models</option>
+                                <option value="fruit">🍎 Fruit Detection</option>
+                                <option value="leaf">🍃 Leaf Detection</option>
+                            </select>
+
+                            <select id="diseaseFilter" class="filter-select">
+                                <option value="">All Diseases</option>
+                                <option value="Apple_Black_Rot">Apple Black Rot</option>
+                                <option value="Apple_Cedar_Rust">Apple Cedar Rust</option>
+                                <option value="Apple_Scab">Apple Scab</option>
+                                <option value="Apple_Healthy">Apple Healthy</option>
+                                <option value="Tomato_Bacterial_spot">Tomato Bacterial Spot</option>
+                                <option value="Tomato_Early_blight">Tomato Early Blight</option>
+                                <option value="Tomato_Late_blight">Tomato Late Blight</option>
+                                <option value="Tomato_healthy">Tomato Healthy</option>
+                            </select>
+
+                            <select id="confidenceFilter" class="filter-select">
+                                <option value="">All Confidence</option>
+                                <option value="high">High (>95%)</option>
+                                <option value="medium">Medium (80-95%)</option>
+                                <option value="low">Low (<80%)</option>
+                            </select>
+                        </div>
+
+                        <div class="action-controls">
+                            <button id="refreshHistory" class="btn btn--secondary">
+                                <i class="fas fa-sync-alt"></i> Refresh
+                            </button>
+                            <button id="exportHistory" class="btn btn--primary">
+                                <i class="fas fa-download"></i> Export CSV
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="history-stats">
+                        <div class="stat-item">
+                            <span class="stat-label">Total Predictions:</span>
+                            <span class="stat-value" id="historyTotalCount">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Average Confidence:</span>
+                            <span class="stat-value" id="historyAvgConfidence">0%</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Most Common:</span>
+                            <span class="stat-value" id="historyTopDisease">-</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="history-results-container">
+                    <div id="historyResults" class="history-results">
+                        <div class="loading-history">
+                            <div class="spinner-small"></div>
+                            <p>Loading prediction history...</p>
+                        </div>
+                    </div>
+
+                    <div class="history-pagination">
+                        <button id="firstPage" class="btn-pagination">
+                            <i class="fas fa-angle-double-left"></i>
+                        </button>
+                        <button id="prevPage" class="btn-pagination">
+                            <i class="fas fa-angle-left"></i> Previous
+                        </button>
+                        <span id="pageInfo" class="page-info">Page 1 of 1</span>
+                        <button id="nextPage" class="btn-pagination">
+                            Next <i class="fas fa-angle-right"></i>
+                        </button>
+                        <button id="lastPage" class="btn-pagination">
+                            <i class="fas fa-angle-double-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Page -->
+        <section id="about" class="page">
+            <div class="page-header">
+                <h2><i class="fas fa-info-circle"></i> About CropGuard AI</h2>
+                <p>Advanced multi-crop disease detection system powered by deep learning and computer vision</p>
+            </div>
+            
+            <div class="about-container">
+                <div class="about-hero">
+                    <div class="about-hero-content">
+                        <h3>🌱 Revolutionizing Agricultural Technology</h3>
+                        <p class="about-hero-text">
+                            CropGuard AI represents the cutting edge of agricultural technology, combining advanced machine learning 
+                            with deep domain expertise in plant pathology. Our system provides farmers, researchers, and agricultural 
+                            professionals with powerful tools to identify, analyze, and treat crop diseases with unprecedented accuracy.
+                        </p>
+                    </div>
+                    <div class="about-hero-stats">
+                        <div class="hero-stat">
+                            <span class="hero-stat-number">99.77%</span>
+                            <span class="hero-stat-label">Fruit Detection Accuracy</span>
+                        </div>
+                        <div class="hero-stat">
+                            <span class="hero-stat-number">95.50%</span>
+                            <span class="hero-stat-label">Leaf Detection Accuracy</span>
+                        </div>
+                        <div class="hero-stat">
+                            <span class="hero-stat-number">14</span>
+                            <span class="hero-stat-label">Disease Types Supported</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="about-sections">
+                    <div class="about-section">
+                        <div class="section-icon">🎯</div>
+                        <h3>Our Mission</h3>
+                        <p>
+                            To democratize access to advanced plant disease detection technology, enabling farmers worldwide 
+                            to make informed decisions that protect their crops, increase yields, and contribute to global 
+                            food security. We believe that cutting-edge AI should be accessible to everyone in agriculture.
+                        </p>
+                    </div>
+
+                    <div class="about-section">
+                        <div class="section-icon">🔬</div>
+                        <h3>Technology Excellence</h3>
+                        <p>
+                            Our platform utilizes state-of-the-art deep learning architectures including ResNet50V2 for fruit 
+                            detection and custom CNNs for leaf analysis. Each model is trained on thousands of professionally 
+                            curated images and validated by agricultural experts to ensure real-world reliability.
+                        </p>
+                        <div class="tech-highlights">
+                            <span class="tech-tag">TensorFlow</span>
+                            <span class="tech-tag">Computer Vision</span>
+                            <span class="tech-tag">Transfer Learning</span>
+                            <span class="tech-tag">Deep CNNs</span>
+                        </div>
+                    </div>
+
+                    <div class="about-section">
+                        <div class="section-icon">✨</div>
+                        <h3>Key Capabilities</h3>
+                        <div class="capabilities-list">
+                            <div class="capability-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Multi-modal disease detection (fruits & leaves)</span>
+                            </div>
+                            <div class="capability-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Real-time analysis with sub-3-second response</span>
+                            </div>
+                            <div class="capability-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Comprehensive treatment recommendations</span>
+                            </div>
+                            <div class="capability-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Organic and chemical remedy options</span>
+                            </div>
+                            <div class="capability-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Advanced analytics and trend analysis</span>
+                            </div>
+                            <div class="capability-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Multi-platform accessibility (web & mobile-ready)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="about-section">
+                        <div class="section-icon">🚀</div>
+                        <h3>Future Roadmap</h3>
+                        <p>
+                            We're continuously expanding our capabilities with exciting developments planned for the near future:
+                        </p>
+                        <div class="roadmap-items">
+                            <div class="roadmap-item">
+                                <div class="roadmap-phase">Phase 1</div>
+                                <div class="roadmap-content">
+                                    <h4>Expanded Crop Support</h4>
+                                    <p>Adding support for citrus, grape, and stone fruit diseases</p>
+                                </div>
+                            </div>
+                            <div class="roadmap-item">
+                                <div class="roadmap-phase">Phase 2</div>
+                                <div class="roadmap-content">
+                                    <h4>Mobile Applications</h4>
+                                    <p>Native iOS and Android apps with offline capabilities</p>
+                                </div>
+                            </div>
+                            <div class="roadmap-item">
+                                <div class="roadmap-phase">Phase 3</div>
+                                <div class="roadmap-content">
+                                    <h4>IoT Integration</h4>
+                                    <p>Automated monitoring systems with sensor data fusion</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="about-section">
+                        <div class="section-icon">👥</div>
+                        <h3>Our Team</h3>
+                        <p>
+                            CropGuard AI is developed by a passionate team of machine learning engineers, agricultural scientists, 
+                            and software developers committed to advancing agricultural technology for the benefit of farmers worldwide.
+                        </p>
+                        <div class="team-expertise">
+                            <div class="expertise-area">
+                                <strong>Machine Learning:</strong> Deep learning, computer vision, transfer learning
+                            </div>
+                            <div class="expertise-area">
+                                <strong>Agriculture:</strong> Plant pathology, crop science, integrated pest management
+                            </div>
+                            <div class="expertise-area">
+                                <strong>Software:</strong> Full-stack development, cloud architecture, mobile development
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Page -->
+        <section id="contact" class="page">
+            <div class="page-header">
+                <h2><i class="fas fa-envelope"></i> Contact Our Team</h2>
+                <p>Get in touch with our agricultural AI experts for support, collaborations, or technical inquiries</p>
+            </div>
+
+            <div class="contact-container">
+                <div class="contact-info-section">
+                    <div class="contact-card primary">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <h3>Email Support</h3>
+                        <p class="contact-value">
+                            <a href="mailto:kartheeswarmails@gmail.com">kartheeswarmails@gmail.com</a>
+                        </p>
+                        <p class="contact-description">
+                            Comprehensive technical support, research collaboration, and general inquiries.
+                            We respond within 24 hours during business days.
+                        </p>
+                        <div class="contact-response-time">
+                            <i class="fas fa-clock"></i> Response time: < 24 hours
+                        </div>
+                    </div>
+
+                    <div class="contact-card primary">
+                        <div class="contact-icon">
+                            <i class="fab fa-whatsapp"></i>
+                        </div>
+                        <h3>WhatsApp Support</h3>
+                        <p class="contact-value">
+                            <a href="https://wa.me/917845844982" target="_blank">+91 78458 44982</a>
+                        </p>
+                        <p class="contact-description">
+                            Instant support, quick questions, and real-time technical assistance. 
+                            Available during business hours (9 AM - 6 PM IST).
+                        </p>
+                        <div class="contact-response-time">
+                            <i class="fas fa-bolt"></i> Instant messaging
+                        </div>
+                    </div>
+
+                    <div class="contact-additional-info">
+                        <div class="info-card">
+                            <h4><i class="fas fa-globe"></i> Global Support</h4>
+                            <p>We provide support to users worldwide across all time zones</p>
+                        </div>
+                        <div class="info-card">
+                            <h4><i class="fas fa-users"></i> Community</h4>
+                            <p>Join our growing community of farmers and agricultural professionals</p>
+                        </div>
+                        <div class="info-card">
+                            <h4><i class="fas fa-graduation-cap"></i> Training</h4>
+                            <p>Custom training sessions and workshops available for organizations</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-form-section">
+                    <div class="form-header">
+                        <h3>Send Us a Message</h3>
+                        <p>Fill out the form below and we'll get back to you as soon as possible</p>
+                    </div>
+
+                    <form id="contactForm" class="contact-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="contactName">
+                                    <i class="fas fa-user"></i> Full Name *
+                                </label>
+                                <input type="text" id="contactName" name="name" required 
+                                       placeholder="Enter your full name">
+                            </div>
+                            <div class="form-group">
+                                <label for="contactEmail">
+                                    <i class="fas fa-envelope"></i> Email Address *
+                                </label>
+                                <input type="email" id="contactEmail" name="email" required 
+                                       placeholder="Enter your email address">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contactSubject">
+                                <i class="fas fa-tag"></i> Subject
+                            </label>
+                            <select id="contactSubject" name="subject">
+                                <option value="General Inquiry">General Inquiry</option>
+                                <option value="Technical Support">Technical Support</option>
+                                <option value="Feature Request">Feature Request</option>
+                                <option value="Bug Report">Bug Report</option>
+                                <option value="Collaboration">Research Collaboration</option>
+                                <option value="Partnership">Business Partnership</option>
+                                <option value="Training">Training & Workshops</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contactMessage">
+                                <i class="fas fa-comment-dots"></i> Message *
+                            </label>
+                            <textarea id="contactMessage" name="message" rows="6" required 
+                                      placeholder="Please describe your inquiry in detail..."></textarea>
+                            <div class="character-count">
+                                <span id="messageCharCount">0</span>/1000 characters
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="contactConsent" required>
+                                <span class="checkmark"></span>
+                                I agree to receive follow-up communication regarding my inquiry
+                            </label>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn--primary btn--large">
+                                <i class="fas fa-paper-plane"></i> Send Message
+                            </button>
+                            <button type="reset" class="btn btn--secondary">
+                                <i class="fas fa-redo"></i> Reset Form
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-main">
+                <div class="footer-section">
+                    <div class="footer-brand">
+                        <i class="fas fa-seedling"></i>
+                        <span>CropGuard AI</span>
+                        <span class="footer-version">v3.0</span>
+                    </div>
+                    <p class="footer-description">
+                        Advanced multi-crop disease detection system powered by deep learning and computer vision. 
+                        Protecting crops worldwide with AI-driven precision agriculture technology.
+                    </p>
+                    <div class="footer-contact-primary">
+                        <div class="footer-contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <a href="mailto:kartheeswarmails@gmail.com">kartheeswarmails@gmail.com</a>
+                        </div>
+                        <div class="footer-contact-item">
+                            <i class="fab fa-whatsapp"></i>
+                            <a href="https://wa.me/917845844982" target="_blank">+91 78458 44982</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h3>🔍 Detection Models</h3>
+                    <ul class="footer-links">
+                        <li><a href="#" onclick="navigateToPage('detect')">🍎 Fruit Disease Detection</a></li>
+                        <li><a href="#" onclick="navigateToPage('detect')">🍃 Leaf Disease Detection</a></li>
+                        <li><a href="#" onclick="navigateToPage('analytics')">📊 Analytics Dashboard</a></li>
+                        <li><a href="#" onclick="navigateToPage('comparison')">⚖️ Model Comparison</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>📚 Resources</h3>
+                    <ul class="footer-links">
+                        <li><a href="#" onclick="navigateToPage('research')">🔬 Technical Research</a></li>
+                        <li><a href="#" onclick="navigateToPage('history')">📋 Prediction History</a></li>
+                        <li><a href="#" onclick="navigateToPage('about')">ℹ️ About Our Technology</a></li>
+                        <li><a href="#">📖 API Documentation</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>📊 Performance Metrics</h3>
+                    <div class="footer-metrics">
+                        <div class="footer-metric">
+                            <span class="metric-label">Fruit Model Accuracy:</span>
+                            <span class="metric-value">99.77%</span>
+                        </div>
+                        <div class="footer-metric">
+                            <span class="metric-label">Leaf Model Accuracy:</span>
+                            <span class="metric-value">95.50%</span>
+                        </div>
+                        <div class="footer-metric">
+                            <span class="metric-label">Response Time:</span>
+                            <span class="metric-value">< 3 seconds</span>
+                        </div>
+                        <div class="footer-metric">
+                            <span class="metric-label">Uptime:</span>
+                            <span class="metric-value">99.9%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h3>📞 Support & Contact</h3>
+                    <div class="footer-support">
+                        <div class="support-item">
+                            <i class="fas fa-headset"></i>
+                            <div>
+                                <span class="support-label">24/7 Support</span>
+                                <span class="support-value">Always Available</span>
+                            </div>
+                        </div>
+                        <div class="support-item">
+                            <i class="fas fa-globe"></i>
+                            <div>
+                                <span class="support-label">Global Coverage</span>
+                                <span class="support-value">Worldwide Service</span>
+                            </div>
+                        </div>
+                        <div class="support-item">
+                            <i class="fas fa-language"></i>
+                            <div>
+                                <span class="support-label">Languages</span>
+                                <span class="support-value">Multi-language Support</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-bottom-content">
+                    <p class="copyright">
+                        &copy; 2025 CropGuard AI. All rights reserved. Built with ❤️ for farmers and agricultural professionals worldwide.
+                    </p>
+                    <p class="tech-stack">
+                        Powered by <strong>TensorFlow</strong> • <strong>ResNet50V2</strong> • <strong>Flask</strong> • <strong>Deep Learning</strong>
+                    </p>
+                </div>
+                <div class="footer-stats">
+                    <span class="footer-stat">🌱 Protecting crops since 2025</span>
+                    <span class="footer-stat">🤖 AI-powered precision agriculture</span>
+                    <span class="footer-stat">🌍 Serving farmers globally</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="app.js"></script>
+</body>
+</html>
